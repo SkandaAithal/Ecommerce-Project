@@ -99,11 +99,10 @@ const Wrapper = styled.section`
     padding-bottom: 1rem;
 
     .card-data {
-      padding: 0 2rem;
+      padding: 2rem 1rem;
     }
 
     .card-data-flex {
-      margin: 2rem 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
