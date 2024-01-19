@@ -1,0 +1,62 @@
+const express = require("express");
+require("dotenv").config();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const connectToDb = require("./db/connection");
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
+app.use(cors({ credentials: true }));
+const userRoutes = require("./routes/users.routes");
+const productRoutes = require("./routes/products.routes");
+const imageRoutes = require("./routes/images.routes");
+
+// ! upload images and files
+
+// ! APIs
+app.use("/users", userRoutes);
+app.use("/products", productRoutes);
+app.use("/images", imageRoutes);
+app.use((err, req, res, next) => {
+  if (err.statuscode) {
+    return res.status(err.statuscode).json({
+      error: true,
+      message: err.message,
+    });
+  }
+  if (err.code === 11000) {
+    if (err.message.includes("email")) {
+      return res
+        .status(401)
+        .json({ error: true, message: "Email already Exists" });
+    } else {
+      return res
+        .status(401)
+        .json({ error: true, message: "Mobile number already Exists" });
+    }
+  }
+  console.log(err);
+  res.status(500).json({
+    error: true,
+    message: err.message,
+  });
+});
+
+const startServer = async () => {
+  try {
+    app.listen(process.env.PORT, () => {
+      console.log("server running on port " + process.env.PORT);
+    });
+
+    await connectToDb(process.env.URL);
+    console.log("db connected");
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+startServer();
