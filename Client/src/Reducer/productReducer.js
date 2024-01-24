@@ -47,6 +47,31 @@ const ProductReducer = (state, action) => {
         ...state,
         gridView: false,
       };
+
+    case "UPDATE_FILTER_VALUE":
+      const { name, value } = action.payload;
+
+      return {
+        ...state,
+        page: 1,
+        products: [],
+        [name]: value,
+        trigger: !state.trigger,
+      };
+
+    case "CLEAR_FILTERS":
+      return {
+        ...state,
+        text: "",
+        products: [],
+        page: 1,
+        trigger: !state.trigger,
+        company: "all",
+        category: "all",
+        color: "all",
+        price: "",
+        sort: "",
+      };
     default:
       return state;
   }

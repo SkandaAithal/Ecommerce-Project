@@ -121,7 +121,6 @@ function AddProduct() {
         });
       }
     } catch (err) {
-      console.log(err);
       dispatchUser({
         type: "SHOW_NOTIFICATION",
         payload: {

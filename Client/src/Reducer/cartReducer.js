@@ -2,7 +2,7 @@ export default function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_TO_CART":
       let { amount, curColor, product } = action.payload;
-      console.log(product);
+
       let cartProduct;
       cartProduct = {
         id: product._id + curColor,
@@ -14,7 +14,7 @@ export default function cartReducer(state, action) {
         blurhash: product.images[0].blurHash,
         max: product.stock,
       };
-      console.log(state.cart);
+
       if (state.cart.find((prod) => prod.id === cartProduct.id)) {
         let updatedCart = state.cart.map((product) => {
           if (product.id === cartProduct.id && product.amount < product.max) {
@@ -22,7 +22,7 @@ export default function cartReducer(state, action) {
           }
           return product;
         });
-        console.log(updatedCart);
+
         return {
           ...state,
           cart: [...updatedCart],
@@ -48,7 +48,6 @@ export default function cartReducer(state, action) {
         }
         return product;
       });
-      console.log(updatedCartAmountIncrease);
       return {
         ...state,
         cart: [...updatedCartAmountIncrease],

@@ -2,14 +2,15 @@ import React from "react";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaList } from "react-icons/fa6";
 import styled from "styled-components";
+import { useProductContext } from "../context/productcontext";
 
 export default function Sort({
   setGridView,
   setListView,
   gridView,
-  sorting,
   totalItems,
 }) {
+  const { updateFilterValue } = useProductContext();
   return (
     <Wrapper>
       <div className="sorting-list--grid">
@@ -35,7 +36,7 @@ export default function Sort({
             name="sort"
             id="sort"
             className="sort-selection--style"
-            onClick={sorting}
+            onClick={updateFilterValue}
           >
             <option value="lowest">Price (lowest)</option>
 

@@ -7,19 +7,16 @@ import { useProductContext } from "../context/productcontext";
 import { useSellerContext } from "../context/sellercontext";
 
 function ConfirmModal({ id, name }) {
-  const abortController = new AbortController();
   const { dispatchSeller } = useSellerContext();
   const { dispatch } = useProductContext();
   const removeProduct = async () => {
     try {
-      const { data } = await axios.delete(
+      await axios.delete(
         `http://localhost:4000/products/removeproduct?pid=${id}`
       );
-      console.log(data);
+
       dispatchSeller({ type: "DELETE_PRODUCT", payload: id });
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   const { dispatchUser } = useUserContext();
   return ReactDOM.createPortal(
@@ -33,6 +30,7 @@ function ConfirmModal({ id, name }) {
           <Button
             onClick={() => {
               removeProduct();
+
               dispatch({ type: "REFRESH" });
               dispatchUser({ type: "CLOSE_CONFIRM" });
             }}

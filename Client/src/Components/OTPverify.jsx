@@ -119,7 +119,7 @@ function OTPverify({ otpLength, fdata, setOpenOtp }) {
       }
     } catch (err) {
       setIsLoading(false);
-      console.log(err);
+
       dispatchUser({
         type: "SHOW_NOTIFICATION",
         payload: {

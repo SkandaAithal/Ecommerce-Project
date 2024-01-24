@@ -36,7 +36,6 @@ const SingleProduct = () => {
 
         setSingleProduct(data.singleproduct[0]);
       } catch (err) {
-        console.log(err);
         dispatchUser({
           type: "SHOW_NOTIFICATION",
           payload: {

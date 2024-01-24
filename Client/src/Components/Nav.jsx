@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
@@ -13,7 +13,7 @@ function Nav({ userRole, isLoggedin }) {
   const [menuIcon, setMenuIcon] = useState(false);
   const { dispatchUser } = useUserContext();
 
-  const Nav = styled.nav`
+  const NavBar = styled.nav`
     .nav-lists {
       display: flex;
       gap: 1rem;
@@ -118,7 +118,7 @@ function Nav({ userRole, isLoggedin }) {
     }
   `;
   return (
-    <Nav>
+    <NavBar>
       <div className={menuIcon ? "active" : ""}>
         <ul className="nav-lists">
           <li className="navbar-link">
@@ -265,7 +265,7 @@ function Nav({ userRole, isLoggedin }) {
           />
         </div>
       </div>
-    </Nav>
+    </NavBar>
   );
 }
 

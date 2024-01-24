@@ -27,21 +27,26 @@ const NotificationPortal = () => {
     document.getElementById("notification-portal-root")
   );
 };
+
 const Wrapper = styled.div`
   .notification {
     position: fixed;
-    top: -100px;
+    top: 20px;
     left: 50%;
-    width: max-content;
+    width: 90%;
+    max-width: 400px;
     transform: translateX(-50%);
     color: #fff;
-    padding: 2rem;
-    border-radius: 5px;
+    padding: 16px;
+    border-radius: 12px;
     opacity: 0;
     z-index: 102;
-    font-size: 2rem;
+    font-size: 1.6rem;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #333; /* Background color for notification */
     animation: slideInDown 0.5s ease-in-out forwards;
+    font-family: "Helvetica Neue", sans-serif; /* Font family similar to iOS */
   }
 
   .notification.visible {
@@ -76,14 +81,15 @@ const Wrapper = styled.div`
 
   @media (max-width: 998px) {
     .notification {
-      width: 80dvw;
+      width: 80vw;
     }
   }
 
   @media (max-width: 768px) {
     .notification {
-      width: 80dvw;
+      width: 80vw;
     }
   }
 `;
+
 export default NotificationPortal;

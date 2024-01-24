@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/productcontext";
-import { FilterContextProvider } from "./context/filtercontext";
 import { CartProvider } from "./context/cartcontext";
 import { UserProvider } from "./context/userscontext";
 import { SellerProvider } from "./context/sellercontext";
@@ -15,11 +14,9 @@ root.render(
   <UserProvider>
     <AppProvider>
       <SellerProvider>
-        <FilterContextProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </FilterContextProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
       </SellerProvider>
     </AppProvider>
   </UserProvider>

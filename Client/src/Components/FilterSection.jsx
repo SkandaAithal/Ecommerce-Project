@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useFilterProducts } from "../context/filtercontext";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaAngleDown, FaAngleUp } from "react-icons/fa";
 import FormatPrice from "../helpers/FormatPrice";
 import { Button } from "../styles/Button";
 import Loader from "./Loader";
 import { useProductContext } from "../context/productcontext";
 export default function FilterSection() {
-  let {
-    filters: { text, category, color, price },
-    updateFilterValue,
-
-    clearFilters,
-  } = useFilterProducts();
-
   const {
     maxPrice,
     minPrice,
     uniqueCategories,
     uniqueCompanies,
     uniqueColors,
+    text,
+    category,
+    color,
+    price,
+    updateFilterValue,
+    clearFilters,
   } = useProductContext();
+  const [showMoreCategories, setShowMoreCategories] = useState(false);
+  const [showMoreColors, setShowMoreColors] = useState(false);
+  const lessCategories = uniqueCategories.slice(0, 4);
+  const lessColors = uniqueColors.slice(0, 5);
 
   return (
     <Wrapper>
@@ -42,21 +44,52 @@ export default function FilterSection() {
 
       <div className="filter-category">
         <h3>Category</h3>
+
         {uniqueCategories.length ? (
           <div>
-            {uniqueCategories.map((curElem, index) => {
-              return (
-                <button
-                  key={index}
-                  name="category"
-                  value={curElem}
-                  className={curElem === category ? "active" : ""}
-                  onClick={updateFilterValue}
-                >
-                  {curElem}
-                </button>
-              );
-            })}
+            {showMoreCategories
+              ? ["all", ...uniqueCategories].map((curElem, index) => {
+                  return (
+                    <button
+                      key={index}
+                      name="category"
+                      value={curElem}
+                      className={curElem === category ? "active" : ""}
+                      onClick={updateFilterValue}
+                    >
+                      {curElem}
+                    </button>
+                  );
+                })
+              : ["all", ...lessCategories].map((curElem, index) => {
+                  return (
+                    <button
+                      key={index}
+                      name="category"
+                      value={curElem}
+                      className={curElem === category ? "active" : ""}
+                      onClick={updateFilterValue}
+                    >
+                      {curElem}
+                    </button>
+                  );
+                })}
+
+            {showMoreCategories ? (
+              <FaAngleUp
+                className="arrow-icon"
+                onClick={() => {
+                  setShowMoreCategories(false);
+                }}
+              />
+            ) : (
+              <FaAngleDown
+                className="arrow-icon"
+                onClick={() => {
+                  setShowMoreCategories(true);
+                }}
+              />
+            )}
           </div>
         ) : (
           <Loader />
@@ -72,7 +105,7 @@ export default function FilterSection() {
               className="filter-company--select"
               onClick={updateFilterValue}
             >
-              {uniqueCompanies.map((curElem, index) => {
+              {["all", ...uniqueCompanies].map((curElem, index) => {
                 return (
                   <option key={index} value={curElem}>
                     {curElem}
@@ -99,24 +132,59 @@ export default function FilterSection() {
               all
             </button>
 
-            {uniqueColors.map((curColor, index) => {
-              return (
-                <button
-                  key={index}
-                  name="color"
-                  value={curColor}
-                  style={{ backgroundColor: curColor }}
-                  className={
-                    curColor === color ? "active btnStyle" : "btnStyle"
-                  }
-                  onClick={updateFilterValue}
-                >
-                  {curColor === color ? (
-                    <FaCheck className="checkStyle" />
-                  ) : null}
-                </button>
-              );
-            })}
+            {showMoreColors
+              ? uniqueColors.map((curColor, index) => {
+                  return (
+                    <button
+                      key={index}
+                      name="color"
+                      value={curColor}
+                      style={{ backgroundColor: curColor }}
+                      className={
+                        curColor === color ? "active btnStyle" : "btnStyle"
+                      }
+                      onClick={updateFilterValue}
+                    >
+                      {curColor === color ? (
+                        <FaCheck className="checkStyle" />
+                      ) : null}
+                    </button>
+                  );
+                })
+              : lessColors.map((curColor, index) => {
+                  return (
+                    <button
+                      key={index}
+                      name="color"
+                      value={curColor}
+                      style={{ backgroundColor: curColor }}
+                      className={
+                        curColor === color ? "active btnStyle" : "btnStyle"
+                      }
+                      onClick={updateFilterValue}
+                    >
+                      {curColor === color ? (
+                        <FaCheck className="checkStyle" />
+                      ) : null}
+                    </button>
+                  );
+                })}
+
+            {showMoreColors ? (
+              <FaAngleUp
+                className="arrow-icon"
+                onClick={() => {
+                  setShowMoreColors(false);
+                }}
+              />
+            ) : (
+              <FaAngleDown
+                className="arrow-icon"
+                onClick={() => {
+                  setShowMoreColors(true);
+                }}
+              />
+            )}
           </div>
         ) : (
           <Loader />
@@ -125,10 +193,11 @@ export default function FilterSection() {
 
       <div className="filter_price">
         <h3>Price</h3>
-
-        <p>
-          <FormatPrice price={price} number={100} />
-        </p>
+        {price && (
+          <p>
+            <FormatPrice price={price} number={100} />
+          </p>
+        )}
         <input
           type="range"
           name="price"
@@ -156,6 +225,16 @@ const Wrapper = styled.section`
   flex-direction: column;
   gap: 3rem;
 
+  .arrow-icon {
+    font-size: 2rem;
+    color: red;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
   h3 {
     padding: 2rem 0;
     font-size: bold;
@@ -203,7 +282,10 @@ const Wrapper = styled.section`
 
   .filter-color-style {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     justify-content: center;
+    align-items: center;
   }
 
   .color-all--style {
@@ -218,7 +300,7 @@ const Wrapper = styled.section`
     height: 2rem;
     box-shadow: 0px 0px 5px 2px #dad9db;
     border-radius: 50%;
-    margin-left: 1rem;
+
     border: none;
     outline: none;
     opacity: 0.5;

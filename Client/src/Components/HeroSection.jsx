@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/Button";
+import { Blurhash } from "react-blurhash";
 
 function HeroSection({ heading }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "images/hero.jpg";
+    img.onload = () => setImageLoaded(true);
+  }, []);
+
   return (
     <Wrapper>
       <div className="container">
@@ -24,10 +33,23 @@ function HeroSection({ heading }) {
             </Link>
           </div>
 
-          {/* image section */}
           <div className="hero-section-image">
-            <figure className="img-style">
-              <img src="images/hero.jpg" />
+            {imageLoaded ? null : (
+              <div className="placeholder">
+                <Blurhash
+                  height={"100%"}
+                  width={"100%"}
+                  hash="LAF=da5S4nR30zofo~9F00Z$~VSi"
+                />
+              </div>
+            )}
+
+            <figure className={`img-style ${imageLoaded ? "loaded" : ""}`}>
+              <img
+                src="images/hero.jpg"
+                alt="Hero Image"
+                style={{ display: imageLoaded ? "block" : "none" }}
+              />
             </figure>
           </div>
         </div>
@@ -35,14 +57,14 @@ function HeroSection({ heading }) {
     </Wrapper>
   );
 }
+
 const Wrapper = styled.section`
   padding: 8rem 5rem;
 
   img {
-    min-width: 15rem;
-    min-height: 15rem;
-    max-width: 100%;
+    width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
   .hero-section-data {
@@ -62,42 +84,29 @@ const Wrapper = styled.section`
 
   .hero-section-image {
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  figure {
-    position: relative;
+    height: auto;
 
-    &::after {
-      content: "";
-      width: 60%;
-      height: 80%;
-      background-color: rgba(81, 56, 238, 0.4);
-      position: absolute;
-      left: 50%;
-      top: -5rem;
-      z-index: -1;
+    .placeholder {
+      width: 100%;
+      min-height: 25rem;
+      max-width: 100%;
+      height: 100%;
     }
   }
+
   .img-style {
     width: 100%;
+    min-height: 25rem;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     padding: 8rem 0;
     .grid {
       gap: 10rem;
-    }
-
-    figure::after {
-      content: "";
-      width: 50%;
-      height: 100%;
-      left: 0;
-      top: 10%;
-      background-color: rgba(81, 56, 238, 0.4);
     }
   }
 `;

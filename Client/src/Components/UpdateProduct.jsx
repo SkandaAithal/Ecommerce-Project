@@ -35,7 +35,6 @@ function UpdateProduct() {
   const UPDATE_PRODUCT_URL = `http://localhost:4000/products/updateproduct?pid=${id}`;
   const secretKey = process.env.REACT_APP_SECRET_KEY;
   const [state, dispatchAddProduct] = useReducer(reducerFunction, initialState);
-  console.log(state);
   const encryptToken = localStorage.getItem("userToken");
 
   //! to check for token and get su=ingle product
@@ -69,7 +68,6 @@ function UpdateProduct() {
             payload: data.singleproduct[0],
           });
         } catch (err) {
-          console.log(err);
           dispatchUser({
             type: "SHOW_NOTIFICATION",
             payload: {

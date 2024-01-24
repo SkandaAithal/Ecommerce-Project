@@ -36,7 +36,16 @@ const AppProvider = ({ children }) => {
     featureProducts: [],
   };
   const [state, dispatch] = useReducer(reducerFunction, initialState);
-  const API_URL = `http://localhost:4000/products/allproducts?page=${state.page}&text=${state.text}&category=${state.category}&color=${state.color}&price=${state.price}&sort=${state.sort}`;
+  const API_URL = `http://localhost:4000/products/allproducts?page=${
+    state.page
+  }&text=${state.text}&category=${state.category}&color=${
+    state.color
+  }&price=${state.price.toString()}&sort=${state.sort}&company=${
+    state.company
+  }`;
+  const clearFilters = () => {
+    dispatch({ type: "CLEAR_FILTERS" });
+  };
 
   async function getProducts(abortController) {
     try {
@@ -68,6 +77,15 @@ const AppProvider = ({ children }) => {
       type: "SET_LIST_VIEW",
     });
   };
+
+  const updateFilterValue = ({ target: { value, name } }) => {
+    if (state.isLoading) return;
+
+    dispatch({
+      type: "UPDATE_FILTER_VALUE",
+      payload: { value, name },
+    });
+  };
   useEffect(() => {
     getProducts(abortController);
 
@@ -75,7 +93,7 @@ const AppProvider = ({ children }) => {
       abortController.abort();
     };
   }, [state.trigger]);
-  console.log(state);
+
   return (
     <AppContext.Provider
       value={{
@@ -86,6 +104,8 @@ const AppProvider = ({ children }) => {
         loadMoreProducts,
         setGridView,
         setListView,
+        updateFilterValue,
+        clearFilters,
       }}
     >
       {children}

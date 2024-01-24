@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import ProductList from "../Components/ProductList";
 import Sort from "../Components/Sort";
 import FilterSection from "../Components/FilterSection";
-import { useFilterProducts } from "../context/filtercontext";
 
 import { useProductContext } from "../context/productcontext";
 import Loader from "../Components/Loader";
 
 const Products = () => {
-  const { sorting } = useFilterProducts();
   const {
     products,
     isLoading,
@@ -33,7 +31,6 @@ const Products = () => {
               setListView={setListView}
               gridView={gridView}
               totalItems={totalItems}
-              sorting={sorting}
               filterProducts={products}
             />
           </div>

@@ -35,10 +35,11 @@ function Trusted() {
               }
             />
           </div>
+
           <div className="slide">
             <img
               src={
-                "https://lh3.googleusercontent.com/3bXLbllNTRoiTCBdkybd1YzqVWWDRrRwJNkVRZ3mcf7rlydWfR13qJlCSxJRO8kPe304nw1jQ_B0niDo56gPgoGx6x_ZOjtVOK6UGIr3kshpmTq46pvFObfJ2K0wzoqk36MWWSnh0y9PzgE7PVSRz6Y"
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB8ZFGqu24LqDeNZbWQ03Y5hoggsmdu_vrQQ&usqp=CAU"
               }
             />
           </div>

@@ -11,7 +11,7 @@ const CartItem = lazy(() => import("../Components/CartItem"));
 function Cart() {
   let { cart, clearCart, total_price, shippingfee } = useCartContext();
   let navigate = useNavigate();
-  console.log(cart);
+
   return (
     <Wrapper>
       <div className="container">

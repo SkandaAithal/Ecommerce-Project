@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import FormatPrice from "../helpers/FormatPrice";
 import { useProductContext } from "../context/productcontext";

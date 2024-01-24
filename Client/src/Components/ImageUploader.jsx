@@ -20,19 +20,16 @@ const ImageUploader = ({ productName }) => {
   useEffect(() => {
     getImages(productName);
   }, []);
-  console.log(allImages);
+
   const getImages = async (productName) => {
     try {
       if (productName) {
         const { data } = await axios.get(
           `http://localhost:4000/images/getimages?productName=${productName}`
         );
-        console.log(data);
         setAllImages(data);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   const handleImageChange = async (e) => {
     const files = e.target.files;
@@ -62,11 +59,9 @@ const ImageUploader = ({ productName }) => {
             "Content-Type": "multipart/form-data",
           },
         });
-        console.log(data);
 
         getImages(productName);
       } catch (err) {
-        console.log("Error uploading images:", err);
       } finally {
         setIsLoading(false);
       }
@@ -92,9 +87,7 @@ const ImageUploader = ({ productName }) => {
       if (!data.error) {
         getImages(productName);
       }
-    } catch (err) {
-      console.log(err.message);
-    }
+    } catch (err) {}
   };
 
   const addImagesButton = async () => {
