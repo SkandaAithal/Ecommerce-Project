@@ -15,7 +15,7 @@ const SellerProvider = ({ children }) => {
   const abortController = new AbortController();
   const encryptToken = localStorage.getItem("userToken");
   const [state, dispatchSeller] = useReducer(reducerFunction, initialState);
-  const secretKey = process.env.REACT_APP_SECRET_KEY;
+  const secretKey = "sX8nD4zH1cT6kA2yP7uV3wR9qG5pL0J9";
   const SELLER_PRODUCT_URL = `http://localhost:4000/products/getallproducts?page=${state.page}`;
 
   async function getSellerProducts(abortController) {

@@ -10,7 +10,10 @@ let auth = async (req, res, next) => {
       return next(customApiErrors("token is required", 403));
     }
     token = token.split(" ")[1];
-    let decodedData = jsonwebtoken.verify(token, process.env.SECRET_KEY);
+    let decodedData = jsonwebtoken.verify(
+      token,
+      "jkaseygf7tp43ujasdfo8374troqefjhsgef92gwefr78twhefqgef"
+    );
 
     req.userToken = decodedData.email;
     let verifiedUser = await User.findOne({

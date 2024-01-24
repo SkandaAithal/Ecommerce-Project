@@ -31,7 +31,7 @@ function AddProduct() {
   };
 
   const navigate = useNavigate();
-  const secretKey = process.env.REACT_APP_SECRET_KEY;
+  const secretKey = "sX8nD4zH1cT6kA2yP7uV3wR9qG5pL0J9";
   const [state, dispatchAddProduct] = useReducer(reducerFunction, initialState);
 
   const encryptToken = localStorage.getItem("userToken");

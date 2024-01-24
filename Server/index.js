@@ -63,11 +63,13 @@ app.use((err, req, res, next) => {
 
 const startServer = async () => {
   try {
-    app.listen(process.env.PORT, () => {
-      console.log("server running on port " + process.env.PORT);
+    app.listen(4000, () => {
+      console.log("server running on port 4000");
     });
 
-    await connectToDb(process.env.URL);
+    await connectToDb(
+      "mongodb+srv://skandaaithal:125678@skandaecommerce.comdfrj.mongodb.net/?retryWrites=true&w=majority"
+    );
     console.log("db connected");
   } catch (err) {
     console.log(err.message);

@@ -15,7 +15,7 @@ function OTPverify({ otpLength, fdata, setOpenOtp }) {
   const [otpTime, setOtpTime] = useState(60);
   const { dispatchUser } = useUserContext();
   const { dispatchSeller } = useSellerContext();
-  const secretKey = process.env.REACT_APP_SECRET_KEY;
+  const secretKey = "sX8nD4zH1cT6kA2yP7uV3wR9qG5pL0J9";
 
   // ! to get the value from input field
   const handleInputChange = (index, value) => {
