@@ -13,10 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 app.use(cors({ origin: "*", credentials: true }));
 
-const _dirname = path.dirname("");
-const buildPath = path.join(_dirname, "../Client/build");
-app.use(express.static(buildPath));
-
 const userRoutes = require("./routes/users.routes");
 const productRoutes = require("./routes/products.routes");
 const imageRoutes = require("./routes/images.routes");
