@@ -16,7 +16,6 @@ app.use(cors({ origin: "*", credentials: true }));
 const userRoutes = require("./routes/users.routes");
 const productRoutes = require("./routes/products.routes");
 const imageRoutes = require("./routes/images.routes");
-const { errorMonitor } = require("stream");
 
 // ! upload images and files
 
