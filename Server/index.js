@@ -6,25 +6,17 @@ const bodyParser = require("body-parser");
 const connectToDb = require("./db/connection");
 const app = express();
 
-const _dirname = path.dirname("");
-const buildPath = path.join(_dirname, "../Client/build");
-app.use(express.static(buildPath));
-app.get("/*", (req, res) => {
-  res.sendFile(
-    path.join(_dirname, "../Client/build/index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 app.use(cors({ origin: "*", credentials: true }));
+
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, "../Client/build");
+app.use(express.static(buildPath));
+
 const userRoutes = require("./routes/users.routes");
 const productRoutes = require("./routes/products.routes");
 const imageRoutes = require("./routes/images.routes");
