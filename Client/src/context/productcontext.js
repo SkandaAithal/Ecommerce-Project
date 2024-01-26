@@ -36,7 +36,7 @@ const AppProvider = ({ children }) => {
     featureProducts: [],
   };
   const [state, dispatch] = useReducer(reducerFunction, initialState);
-  const API_URL = `http://localhost:4000/products/allproducts?page=${
+  const API_URL = `https://ecommerce-server.uk.to/products/allproducts?page=${
     state.page
   }&text=${state.text}&category=${state.category}&color=${
     state.color

@@ -133,6 +133,7 @@ const Wrapper = styled.section`
     border: none;
     outline: none;
     opacity: 0.5;
+    box-shadow: 0px 0px 5px 2px #dad9db;
     cursor: pointer;
 
     &:hover {

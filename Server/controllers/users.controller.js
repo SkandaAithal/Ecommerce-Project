@@ -45,9 +45,13 @@ const verifyotp = asyncHelper(async (req, res, next) => {
 
   if (userOtpverified) {
     await Users.findOneAndUpdate({ email }, { verified: true }, { new: true });
-    let token = jsonwebtoken.sign({ email }, process.env.SECRET_KEY, {
-      expiresIn: "365d",
-    });
+    let token = jsonwebtoken.sign(
+      { email },
+      "jkaseygf7tp43ujasdfo8374troqefjhsgef92gwefr78twhefqgef",
+      {
+        expiresIn: "365d",
+      }
+    );
     token = `Bearer ${token}`;
     const userData = await Users.findOne({ email });
     return res.status(200).json({

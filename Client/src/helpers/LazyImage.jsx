@@ -48,7 +48,7 @@ function LazyImage({ src, blurhash }) {
         </div>
       )}
       <img
-        src={`http://localhost:4000/uploads/${view}`}
+        src={`https://ecommerce-server.uk.to/uploads/${view}`}
         alt=""
         style={{
           display: isLoading ? "none" : "block",

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 function Login({ setOpenOtp, fdata, setFdata }) {
   const { dispatchUser } = useUserContext();
-  const LOGIN_URL = "http://localhost:4000/users/login";
+  const LOGIN_URL = "https://ecommerce-server.uk.to/users/login";
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const verifyFormData = (name, value) => {

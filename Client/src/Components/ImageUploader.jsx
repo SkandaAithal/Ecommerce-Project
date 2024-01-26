@@ -16,7 +16,8 @@ const ImageUploader = ({ productName }) => {
   const { dispatch } = useProductContext();
   const navigate = useNavigate();
 
-  const UPLOAD_IMAGE_API_URL = "http://localhost:4000/images/imageupload";
+  const UPLOAD_IMAGE_API_URL =
+    "https://ecommerce-server.uk.to/images/imageupload";
   useEffect(() => {
     getImages(productName);
   }, []);
@@ -25,7 +26,7 @@ const ImageUploader = ({ productName }) => {
     try {
       if (productName) {
         const { data } = await axios.get(
-          `http://localhost:4000/images/getimages?productName=${productName}`
+          `https://ecommerce-server.uk.to/images/getimages?productName=${productName}`
         );
         setAllImages(data);
       }
@@ -82,7 +83,7 @@ const ImageUploader = ({ productName }) => {
       }
 
       const { data } = await axios.delete(
-        `http://localhost:4000/images/removeimage?pid=${id}`
+        `https://ecommerce-server.uk.to/images/removeimage?pid=${id}`
       );
       if (!data.error) {
         getImages(productName);
@@ -117,7 +118,7 @@ const ImageUploader = ({ productName }) => {
         color: "green",
       },
     });
-    dispatchSeller({ type: "REFRESH" });
+
     dispatch({ type: "REFRESH" });
     navigate("/sellerproducts");
     window.scrollTo(0, 0);
@@ -133,7 +134,9 @@ const ImageUploader = ({ productName }) => {
         {allImages.length
           ? allImages.map((image, index) => (
               <ImageCard key={index}>
-                <img src={`http://localhost:4000/uploads/${image.url}`} />
+                <img
+                  src={`https://ecommerce-server.uk.to/uploads/${image.url}`}
+                />
 
                 <FaTimes
                   className="remove-icon"

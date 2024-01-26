@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
-  const SIGNUP_URL = "http://localhost:4000/users/signup";
+  const SIGNUP_URL = "https://ecommerce-server.uk.to/users/signup";
   const { dispatchUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({

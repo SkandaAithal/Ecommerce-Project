@@ -12,10 +12,11 @@ function ConfirmModal({ id, name }) {
   const removeProduct = async () => {
     try {
       await axios.delete(
-        `http://localhost:4000/products/removeproduct?pid=${id}`
+        `https://ecommerce-server.uk.to/products/removeproduct?pid=${id}`
       );
 
       dispatchSeller({ type: "DELETE_PRODUCT", payload: id });
+      dispatch({ type: "REFRESH" });
     } catch (err) {}
   };
   const { dispatchUser } = useUserContext();
@@ -31,7 +32,6 @@ function ConfirmModal({ id, name }) {
             onClick={() => {
               removeProduct();
 
-              dispatch({ type: "REFRESH" });
               dispatchUser({ type: "CLOSE_CONFIRM" });
             }}
           >

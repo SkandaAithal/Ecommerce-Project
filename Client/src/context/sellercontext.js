@@ -16,7 +16,7 @@ const SellerProvider = ({ children }) => {
   const encryptToken = localStorage.getItem("userToken");
   const [state, dispatchSeller] = useReducer(reducerFunction, initialState);
   const secretKey = "sX8nD4zH1cT6kA2yP7uV3wR9qG5pL0J9";
-  const SELLER_PRODUCT_URL = `http://localhost:4000/products/getallproducts?page=${state.page}`;
+  const SELLER_PRODUCT_URL = `https://ecommerce-server.uk.to/products/getallproducts?page=${state.page}`;
 
   async function getSellerProducts(abortController) {
     try {

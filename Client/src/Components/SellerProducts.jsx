@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import ProductList from "../Components/ProductList";
 import { BsFillGridFill } from "react-icons/bs";
@@ -9,8 +9,12 @@ import { useSellerContext } from "../context/sellercontext";
 import { useProductContext } from "../context/productcontext";
 
 const SellerProducts = () => {
-  const { products, isLoading, totalItems, loadMoreItems } = useSellerContext();
+  const { products, isLoading, totalItems, loadMoreItems, dispatchSeller } =
+    useSellerContext();
   const { setGridView, setListView, gridView } = useProductContext();
+  useEffect(() => {
+    dispatchSeller({ type: "REFRESH" });
+  }, []);
   return (
     <Wrapper>
       <div className="container">

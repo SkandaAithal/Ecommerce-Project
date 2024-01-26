@@ -31,8 +31,8 @@ function UpdateProduct() {
   };
   const { id } = useParams();
   const navigate = useNavigate();
-  const GET_PRODUCT_URL = `http://localhost:4000/products/singleproduct?pid=${id}`;
-  const UPDATE_PRODUCT_URL = `http://localhost:4000/products/updateproduct?pid=${id}`;
+  const GET_PRODUCT_URL = `https://ecommerce-server.uk.to/products/singleproduct?pid=${id}`;
+  const UPDATE_PRODUCT_URL = `https://ecommerce-server.uk.to/products/updateproduct?pid=${id}`;
   const secretKey = "sX8nD4zH1cT6kA2yP7uV3wR9qG5pL0J9";
   const [state, dispatchAddProduct] = useReducer(reducerFunction, initialState);
   const encryptToken = localStorage.getItem("userToken");

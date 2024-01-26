@@ -22,7 +22,7 @@ const SingleProduct = () => {
   const [singleProduct, setSingleProduct] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const GET_PRODUCT_URL = `http://localhost:4000/products/singleproduct?pid=${id}`;
+  const GET_PRODUCT_URL = `https://ecommerce-server.uk.to/products/singleproduct?pid=${id}`;
 
   useEffect(() => {
     const abortController = new AbortController();

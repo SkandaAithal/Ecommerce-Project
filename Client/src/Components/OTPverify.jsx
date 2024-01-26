@@ -8,8 +8,8 @@ import { useSellerContext } from "../context/sellercontext";
 function OTPverify({ otpLength, fdata, setOpenOtp }) {
   const { email, password } = fdata;
   const [isLoading, setIsLoading] = useState(false);
-  const OTPVERIFY_URL = "http://localhost:4000/users/verifyotp";
-  const LOGIN_URL = "http://localhost:4000/users/login";
+  const OTPVERIFY_URL = "https://ecommerce-server.uk.to/users/verifyotp";
+  const LOGIN_URL = "https://ecommerce-server.uk.to/users/login";
   const [otpInput, setOtpInput] = useState(Array(otpLength).fill(""));
   const inputRef = useRef([]);
   const [otpTime, setOtpTime] = useState(60);
@@ -119,7 +119,7 @@ function OTPverify({ otpLength, fdata, setOpenOtp }) {
       }
     } catch (err) {
       setIsLoading(false);
-
+      console.log(err);
       dispatchUser({
         type: "SHOW_NOTIFICATION",
         payload: {

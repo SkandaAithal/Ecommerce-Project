@@ -15,7 +15,7 @@ function AddProduct() {
   const [isLoading, setIsLoading] = useState(false);
   const [istoken, setIsToken] = useState("");
   const [productAdded, setProductAdded] = useState(false);
-  const ADD_PRODUCT_URL = "http://localhost:4000/products/addproduct";
+  const ADD_PRODUCT_URL = "https://ecommerce-server.uk.to/products/addproduct";
   const initialState = {
     name: "",
     company: "",
