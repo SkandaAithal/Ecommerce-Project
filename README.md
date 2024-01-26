@@ -27,3 +27,56 @@ Welcome to UrbanPulse Store, an e-commerce website with dedicated interfaces for
 ### Database
 - [![MongoDB](https://img.shields.io/badge/MongoDB-%20%F0%9F%9A%80-47A248?style=for-the-badge&logo=mongodb&logoColor=white&labelColor=47A248)](https://www.mongodb.com/)
 
+## 🚀 How to Start and Run the Application
+
+### Prerequisites
+- Node.js and npm installed
+- MongoDB installed and running
+
+### Getting Started
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/SkandaAithal/Ecommerce-Project.git
+   ```
+   ```bash
+   cd UrbanPulse-Store
+   ```
+   
+2. **Install Dependencies:**
+
+   ```bash
+   # Install backend dependencies
+   cd server
+   npm install
+
+   # Install frontend dependencies
+   cd ../client
+   npm install
+   ```
+  
+3. **Start the Server:**
+
+   ```bash
+   # From the server directory
+   npm start
+   ```
+   
+4. **Start the Frontend:**
+   ```bash
+   # From the client directory
+   npm start
+   ```
+
+5. **Open the Application:**
+
+   - Open your browser and visit http://localhost:3000 to view the UrbanPulse Store.
+   
+
+6. **Notes**
+
+   - Make sure MongoDB is running before starting the server.
+   - The client and server should run concurrently for the full application to work.
+
+
